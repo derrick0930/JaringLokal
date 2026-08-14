@@ -1,9 +1,8 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
-import { useRecaptchaV3 } from '../components/ui/RecaptchaV3Provider';
 import { Ship, Eye, EyeOff, AlertCircle, CheckCircle, Phone } from 'lucide-react';
 
 export function Register() {
@@ -16,10 +15,8 @@ export function Register() {
   const [showConf, setShowConf]     = useState(false);
   const [error, setError]           = useState('');
   const [loading, setLoading]       = useState(false);
-
   const { register } = useAuth();
   const navigate     = useNavigate();
-  const { executeRecaptcha } = useRecaptchaV3();
 
   const passwordStrength = () => {
     if (password.length === 0) return null;
@@ -29,10 +26,9 @@ export function Register() {
   };
   const strength = passwordStrength();
 
-  const handleSubmit = useCallback(async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
     if (password !== confirm) {
       setError('Kata sandi tidak cocok. Silakan periksa kembali.');
       return;
@@ -41,20 +37,9 @@ export function Register() {
       setError('Kata sandi minimal 6 karakter.');
       return;
     }
-
     setLoading(true);
 
-    // reCAPTCHA v3 — invisible, execute on submit
-    let recaptchaToken = '';
-    if (executeRecaptcha) {
-      try {
-        recaptchaToken = await executeRecaptcha('register');
-      } catch {
-        console.warn('[Register] reCAPTCHA v3 gagal dieksekusi');
-      }
-    }
-
-    const result = await register(name, email, password, phone, recaptchaToken);
+    const result = await register(name, email, password, phone);
     setLoading(false);
 
     if (result.success) {
@@ -62,7 +47,7 @@ export function Register() {
     } else {
       setError(result.error || 'Gagal mendaftar. Silakan coba lagi.');
     }
-  }, [name, email, password, confirm, phone, register, navigate, executeRecaptcha]);
+  };
 
   return (
     <div className="flex-1 flex my-6 max-w-6xl mx-auto w-full rounded-3xl overflow-hidden border border-ocean-100 shadow-sm min-h-[calc(100vh-12rem)]">
@@ -179,7 +164,6 @@ export function Register() {
                   <p className="text-red-500 text-xs mt-1">Kata sandi tidak cocok</p>
                 )}
               </div>
-
               <Button type="submit" className="w-full h-12 text-base" disabled={loading}>
                 {loading ? (
                   <span className="flex items-center gap-2">
@@ -191,20 +175,6 @@ export function Register() {
                   </span>
                 ) : 'Daftar Sekarang'}
               </Button>
-
-              {/* reCAPTCHA v3 badge notice */}
-              <p className="text-[10px] text-ocean-400 text-center leading-relaxed">
-                Dilindungi oleh{' '}
-                <a
-                  href="https://policies.google.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-ocean-600"
-                >
-                  reCAPTCHA v3
-                </a>
-                {' '}dari Google.
-              </p>
             </form>
 
             <div className="mt-6 text-center text-sm text-ocean-600">
