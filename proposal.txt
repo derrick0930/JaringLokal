@@ -1,0 +1,17 @@
+Nama Tim: blup blup
+Anggota1 : hiu
+Anggota2 : paus
+
+Nama Proyek / Platform: JaringLokal - Platform E-Commerce & Distribusi Hasil Laut UMKM Pesisir
+
+Latar Belakang & Penjelasan Singkat:
+Di era modern ini, banyak nelayan tradisional dan UMKM olahan pesisir yang kesulitan memasarkan hasil laut akibat ketergantungan pada rantai tengkulak yang panjang. Kendala utamanya adalah jangkauan pasar yang hanya mengandalkan pembeli lokal di sekitar pesisir dengan harga jual murah, serta masih berjalannya pencatatan penjualan dan stok tangkapan secara manual di buku tulis yang rawan rusak atau tidak akurat.
+
+Berangkat dari masalah tersebut, kami merancang JaringLokal, sebuah platform e-commerce sekaligus sistem manajemen toko hasil laut yang didesain khusus agar mudah dioperasikan oleh nelayan dan pelaku UMKM pesisir. Melalui platform ini, pemilik toko bisa memiliki etalase digital untuk memperluas jangkauan pembeli langsung, mendapatkan akses ke dashboard yang mencatat setiap transaksi dan pemotongan stok secara otomatis, serta bertransaksi aman melalui sistem Rekening Bersama (Escrow 3-Pihak) yang terintegrasi dengan ruang obrolan pesanan.
+
+Proyek ini kami kembangkan menggunakan React dan Tailwind CSS untuk menghasilkan antarmuka pengguna yang cepat dan responsif, baik saat diakses melalui laptop maupun smartphone. Untuk memastikan kelancaran dan keamanan basis data produk serta transaksi secara real-time, kami mengintegrasikannya dengan Supabase. Harapannya, platform ini bisa menjadi langkah awal yang mudah bagi nelayan dan UMKM pesisir untuk mulai merambah ekosistem digital.
+
+
+Tautan Proyek:
+GitHub: https://github.com/derrick0930/JaringLokal
+Live Preview / Deploy: https://jaringlokal.vercel.app/

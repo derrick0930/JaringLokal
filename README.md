@@ -2,4 +2,3 @@
 
 - ANDRE
 - DERRICK
-- NAFI
